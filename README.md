@@ -4,7 +4,7 @@
 
 -- **Em andamento** --
 
-## Sobre
+### Sobre
 
 Este resositório possui uma aplicação simples que visa mostrar alguns dos padrões de projeto mais utilizados no mercado, utilizando a linguagem PHP para isso. Abaixo segue uma breve explicação dos padrões estudados até o momento.
 
@@ -25,3 +25,9 @@ Neste caso onde temos impostos diferentes onde executam a mesma ação de calcul
 **Exemplo:** 
 
 Temos que mostrar para um usuário qual o valor do desconto para sua compra feita. O problema se encontra quando temos vários políticas de descontos, podemos ter descontos por quantidade, por preço ou até mesmo criar novos tipos de descontos. Neste caso temos que trabalhar como uma lista encadeado, onde cada desconto aponta para o próximo desconto, o fim da cadeia pode ser quando um desconto consegue tratar aquela tarefa ou quando chegar ao último desconto da lista.
+
+### Template Method
+
+É utilizado para criação de templates, e possívelmente boilerplates. No exemplo utilizado no código, reusasse as classes do padrão Chain Of Responsability para implementação do padrão Template Method, ou seja este padrão pode ser implementado em conjunto com outros métodos, trazendo simplicidade nas classes derivadas e ainda trata de métodos em comum em um único lugar, deixando as classes filhas livres de algumas responsabilidades.
+
+
