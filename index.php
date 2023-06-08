@@ -3,10 +3,11 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 use HackbartPR\Budget;
-use HackbartPR\ChainOfResponsability\DiscountCalculator;
-use HackbartPR\Strategy\TaxCalculator;
-use HackbartPR\Strategy\Taxes\Icms;
 use HackbartPR\Strategy\Taxes\Iss;
+use HackbartPR\Strategy\Taxes\Icms;
+use HackbartPR\Strategy\TaxCalculator;
+use HackbartPR\ChainOfResponsability\DiscountCalculator;
+use HackbartPR\TemplateMethod\DiscountCalculator as DiscountCalculatorTemplate;
 
 // Calcula Imposto => Strategy
 $calculator = new TaxCalculator();
@@ -27,3 +28,12 @@ echo "Desconto por quantidade: " . $discountAmount . PHP_EOL;
 $budgetDiscPrice = new Budget(600, 5);
 $discountPrice = $calculatorDisc->calculate($budgetDiscPrice);
 echo "Desconto por quantidade: " . $discountPrice . PHP_EOL;
+
+//Calcula Desconto => Template Method
+$calculatorDiscTemp = new DiscountCalculatorTemplate();
+
+$discountAmountTemplate = $calculatorDiscTemp->calculate($budgetDiscAmount);
+echo "Desconto por quantidade (Template Method): " . $discountAmountTemplate . PHP_EOL;
+
+$discountPriceTemplate = $calculatorDiscTemp->calculate($budgetDiscPrice);
+echo "Desconto por quantidade (Template Method): " . $discountPriceTemplate . PHP_EOL;
