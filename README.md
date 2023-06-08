@@ -1,5 +1,9 @@
 # Padrões de Projeto
 
+## Status:
+
+-- **Em andamento** --
+
 ## Sobre
 
 Este resositório possui uma aplicação simples que visa mostrar alguns dos padrões de projeto mais utilizados no mercado, utilizando a linguagem PHP para isso. Abaixo segue uma breve explicação dos padrões estudados até o momento.
