@@ -6,6 +6,7 @@ class Budget
 {
     public function __construct
     (
-        public float $value
+        public float $value,
+        public int $amount
     ){}
 }
