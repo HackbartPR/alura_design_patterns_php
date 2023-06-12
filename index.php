@@ -37,3 +37,8 @@ echo "Desconto por quantidade (Template Method): " . $discountAmountTemplate . P
 
 $discountPriceTemplate = $calculatorDiscTemp->calculate($budgetDiscPrice);
 echo "Desconto por quantidade (Template Method): " . $discountPriceTemplate . PHP_EOL;
+
+//Calcula Desconto => State
+$budgetState = new \HackbartPR\State\Budget(100, 10);
+echo $budgetState->getExtraDiscount() . PHP_EOL;
+$budgetState->approve();
