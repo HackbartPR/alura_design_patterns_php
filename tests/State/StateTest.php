@@ -9,7 +9,7 @@ use HackbartPR\State\States\Finalized;
 use HackbartPR\State\States\InProgress;
 use PHPUnit\Framework\TestCase;
 
-final class BudgetTest extends TestCase
+final class StateTest extends TestCase
 {
     public function testStateShouldBeInProgress(): void
     {
@@ -97,9 +97,53 @@ final class BudgetTest extends TestCase
         $budget->getExtraDiscount();        
     }
     
-    //implementar:    
-    //aprovar pode finalizar
-    //aprovar não pode reprovar
-    //reprovar nao pode aprovar
-    //Em progresso nao pode finalizar    
+    public function testApprovedBudgetCanBeFinalized(): void
+    {
+        $budget = new Budget(100, 5);
+        $budget->approve();
+        $budget->finalize();
+
+        $expected = new Finalized();
+        $this->assertEquals($expected, $budget->state);
+    }
+
+    public function testApprovedBudgetCanNotBeDisapproved(): void
+    {
+        $budget = new Budget(100, 5);
+        $budget->approve();
+        
+        $this->expectException(\DomainException::class);
+        $this->expectExceptionMessage("Este orçamento não pode ser reprovado!");
+        
+        $budget->disapprove();
+    }
+
+    public function testDisapprovedBudgetCanNotBeApproved(): void
+    {
+        $budget = new Budget(100, 5);
+        $budget->disapprove();
+        
+        $this->expectException(\DomainException::class);
+        $this->expectExceptionMessage("Este orçamento não pode ser aprovado!");
+        
+        $budget->approve();        
+    }
+
+    public function testInProgressBudgetCanNotBeFinalized(): void
+    {
+        $budget = new Budget(100, 5);        
+        
+        $this->expectException(\DomainException::class);
+        $this->expectExceptionMessage("Este orçamento não pode ser finalizado!");
+        
+        $budget->finalize();        
+    }
+    
+    public function testBudgetShouldShowsItsStateName(): void
+    {
+        $budget = new Budget(100, 5);
+        $expected = new InProgress();
+
+        $this->assertEquals($expected->name(), $budget->state());
+    }
 }
